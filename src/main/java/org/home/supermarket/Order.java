@@ -8,23 +8,23 @@ import java.util.stream.Collectors;
 import lombok.Data;
 
 @Data
-public class Cart {
+public class Order {
 
-	private List<Item> items = new ArrayList<Item>();
+	private List<OrderLine> items = new ArrayList<OrderLine>();
 
-	public void add(Item item) {
+	public void add(OrderLine item) {
 		items.add(item);
 	}
 
 	public double total() {
 		double total = 0.0;
-		for (Item item : items) {
+		for (OrderLine item : items) {
 			total += item.total();
 		}
 		return total;
 	}
 
-	public List<Item> getItemsByArticle(Article article) {
+	public List<OrderLine> getItemsByArticle(Article article) {
 
 		return items.stream().filter(item -> item.isArticle(article)).collect(Collectors.toList());
 

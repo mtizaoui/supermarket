@@ -4,12 +4,12 @@ package org.home.supermarket;
 import lombok.Data;
 
 @Data
-public class Item {
+public class OrderLine {
 
 	private final Article article;
 	private final double amount;
 
-	public Item(Article article, double amount) {
+	public OrderLine(Article article, double amount) {
 		this.article = article;
 		this.amount = amount;
 	}

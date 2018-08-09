@@ -8,18 +8,18 @@ import lombok.Data;
 @Data
 public class Cassier {
 
-	private List<Discount> discounts = new ArrayList<Discount>();
+	private List<Promotion> discounts = new ArrayList<Promotion>();
 	
-	public double total(Cart cart) {
+	public double total(Order cart) {
 		double total = cart.total();
 		
-		for (Discount discount : discounts) {
+		for (Promotion discount : discounts) {
 			total -= discount.discount(cart);
 		}
 		return total;
 	}
 
-	public void addDiscount(Discount discount) {
+	public void addDiscount(Promotion discount) {
 		discounts.add(discount);
 	}
 
