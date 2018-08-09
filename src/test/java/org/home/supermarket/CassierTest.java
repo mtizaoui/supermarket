@@ -1,11 +1,6 @@
 package org.home.supermarket;
 
-
-
 import static org.junit.Assert.assertEquals;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -46,21 +41,7 @@ public class CassierTest {
 	@Test
 	public void test3For2() {
 		Cassier cassier = new Cassier();
-		Article c=new Article(1, null);
-		Article b=new Article(1, null);
-		
-		if(c.equals(b)) {
-			System.out.println("hahah");
-		}
-		
-		Set<Article> list=new HashSet<>();
-		
-		list.add(b);
-		list.add(c);
-		if(list.size()==1) {
-			System.out.println("hahahahha");
-		}
-		
+
 		XForYDiscount discount = (XForYDiscount) DiscountFactory.getDisount(1);
 		discount.initDiscount(article1, 3, 2);
 
