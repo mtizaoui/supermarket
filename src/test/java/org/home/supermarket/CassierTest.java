@@ -23,26 +23,26 @@ public class CassierTest {
 	}
 
 	@Test
-	public void testOneItem() {
+	public void testOneItem() throws Exception {
 		Cassier cassier = new Cassier();
 		Order cart = new Order();
-		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).item());
+		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).build());
 		double total = cassier.total(cart);
 		assertEquals(1.0, total, 0.001);
 	}
 
 	@Test
-	public void testItems() {
+	public void testItems() throws Exception {
 		Cassier cassier = new Cassier();
 		Order cart = new Order();
-		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).item());
-		cart.add(itemBuilder.create(articles.getArticle1()).amount(2).item());
+		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).build());
+		cart.add(itemBuilder.create(articles.getArticle1()).amount(2).build());
 		double total = cassier.total(cart);
 		assertEquals(4.0, total, 0.001);
 	}
 
 	@Test
-	public void test3For2() {
+	public void test3For2() throws Exception {
 		Cassier cassier = new Cassier();
 
 		
@@ -51,22 +51,22 @@ public class CassierTest {
 
 		cassier.addDiscount(discount);
 		Order cart = new Order();
-		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).item());
-		cart.add(itemBuilder.create(articles.getArticle1()).amount(3).item());
+		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).build());
+		cart.add(itemBuilder.create(articles.getArticle1()).amount(3).build());
 		double total = cassier.total(cart);
 		assertEquals(4.0, total, 0.001);
 	}
 
 	@Test
-	public void test3ForPrice() {
+	public void test3ForPrice() throws Exception {
 		Cassier cassier = new Cassier();
 
 		Promotion promotion =  PromotionFactory.getPromotion(2);
 
 		cassier.addDiscount(promotion);
 		Order cart = new Order();
-		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).item());
-		cart.add(itemBuilder.create(articles.getArticle1()).amount(3).item());
+		cart.add(itemBuilder.create(articles.getArticle0()).amount(1).build());
+		cart.add(itemBuilder.create(articles.getArticle1()).amount(3).build());
 		double total = cassier.total(cart);
 		assertEquals(3.5, total, 0.001);
 

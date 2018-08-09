@@ -1,5 +1,6 @@
 package org.home.supermarket;
 
+import org.home.supermarket.exception.OrderLineException;
 
 import lombok.Data;
 
@@ -12,20 +13,25 @@ public class OrderLineBuilder {
 
 	public static class OrderLineSpecifier {
 		private Article article;
-		private double amount;
-		
+		private Double amount;
+
 		public OrderLineSpecifier(Article article) {
 			this.article = article;
 		}
 
 		public OrderLineSpecifier amount(int amount) {
-			this.amount = amount;
+			this.amount = (double) amount;
 			return this;
 		}
 
-		public OrderLine item() {
-			return new OrderLine(article, amount);
+		public OrderLine build() throws Exception {
+			if (article != null && article.getPrice() != null && amount != null) {
+				return new OrderLine(article, amount);
+			} else {
+				throw new OrderLineException("To build an article object it is necessary to fill the price and the amount");
+			}
+
 		}
-		
+
 	}
 }
